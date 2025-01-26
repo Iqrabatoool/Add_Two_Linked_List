@@ -30,11 +30,16 @@ class List{
 		void add(Node *l1, Node *l2){
 			int sum =0, carry = 0;
 			while(l1 != NULL || l2 != NULL || carry !=0){
-				if(l1==NULL){
+				if(l1==NULL && l2 != NULL){
 					l1 = new Node();
 					l1->data =0;
-				}else if(l2 == NULL){
+				}else if(l2 == NULL && l1 != NULL){
 					l2 = new Node();
+					l2->data = 0;
+				}else if(l1==NULL && l2 == NULL && carry !=0){
+					l1 = new Node();
+					l2 = new Node();
+					l1->data = 0;
 					l2->data = 0;
 				}
 				sum = l1->data + l2->data +carry;
@@ -71,7 +76,7 @@ class List{
 };
 int main(){
 	List l1 ,l2, l3;
-	l1.insert(6);  l1.insert(5); l1.insert(9);
+	l1.insert(7);  l1.insert(5);
 	l2.insert(6);  l2.insert(1);
 	l1.display();  l2.display();
 	l3.add(l1.current , l2.current);
